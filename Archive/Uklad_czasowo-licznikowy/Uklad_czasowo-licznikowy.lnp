@@ -1,0 +1,8 @@
+--cpu ARM7TDMI
+".\startup.o"
+".\timer.o"
+".\main.o"
+--strict --scatter ".\Uklad_czasowo-licznikowy.sct"
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\Uklad_czasowo-licznikowy.map" -o .\Uklad_czasowo-licznikowy.axf
