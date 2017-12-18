@@ -1,33 +1,15 @@
+#include <LPC21xx.H>
 #include "led.h"
 
-unsigned int uiLedIndex; 
-
-
-
-void SetLEDsAsOutput(void){
-	
-	IO1DIR|=(LED0_bm|LED1_bm|LED2_bm|LED3_bm);
-}
-
-void TurnLEDsON(void){
-
-	SetLEDsAsOutput();
-	IO1SET|=(LED0_bm|LED1_bm|LED2_bm|LED3_bm);
-}
-
-void CycleLEDs(unsigned int uiDelayMS){
-	
-	char cLEDNumber;
-	
-	SetLEDsAsOutput();
-	for(cLEDNumber = 0; cLEDNumber < 4; cLEDNumber++){
-		LedOn(cLEDNumber);
-	}
-}
+#define LED0_bm (1<<16)
+#define LED1_bm (1<<17)
+#define LED2_bm (1<<18)
+#define LED3_bm (1<<19)
 
 void LedInit(void){
 	
-	IO1DIR |= (LED0_bm|LED1_bm|LED2_bm|LED3_bm);
+	IO1DIR|=(LED0_bm|LED1_bm|LED2_bm|LED3_bm);
+	IO1SET=LED1_bm;
 }
 
 void LedOn(unsigned char ucLedIndeks){
@@ -36,54 +18,31 @@ void LedOn(unsigned char ucLedIndeks){
 	switch(ucLedIndeks){
 		case 0:
 			IO1SET|=LED0_bm;
-		break;
+			break;
 		case 1:
 			IO1SET|=LED1_bm;
-		break;
+			break;
 		case 2:
 			IO1SET|=LED2_bm;
-		break;
+			break;
 		case 3:
 			IO1SET|=LED3_bm;
-		break;
+			break;
 	}
 }
 
-void StepLeft(){
+void LedStep(enum StepDirection eStepDirection){
 	
-	++uiLedIndex;
-	LedOn(uiLedIndex%4);
-}
-
-void StepRight(){
+	static unsigned char sucLedIndex=0;
 	
-	++uiLedIndex;
-	LedOn(3-(uiLedIndex%4));
-}
-
-
-void LedStep(enum eStepDirection dir){
-	
-	static unsigned char sucLedIndex = 0;
-	
-	if(dir == Left){
-		++sucLedIndex;
-		sucLedIndex %= 4;
+	if(eStepDirection==LEFT){
+		sucLedIndex++;
+		sucLedIndex=sucLedIndex%4;
 		LedOn(sucLedIndex);
 	}
-	else{
-		--sucLedIndex;
-		sucLedIndex %= 4;
+	else if(eStepDirection==RIGHT){
+		sucLedIndex--;
+		sucLedIndex=sucLedIndex%4;
 		LedOn(sucLedIndex);
 	}
-}
-
-void LedStepLeft(void){
-	
-	LedStep(Left);
-}
-
-void LedStepRight(void){
-	
-	LedStep(Right);
 }

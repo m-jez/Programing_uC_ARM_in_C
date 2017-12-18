@@ -1,65 +1,29 @@
+#include <LPC21xx.H>
 #include "led.h"
 #include "keyboard.h"
 
-char ReadButton1(void){
-	
-	enum ButtonState {RELASED, PRESSED};
-	enum KeyboarState {RELASED, BUTTON_1, BUTTON_2, BUTTON_3, BUTTON_4};
-	char cResult = RELASED;
-	
-	IO0DIR &= !BUTTON2_bm;
-	if(!(IO0PIN & BUTTON2_bm)){
-		cResult = PRESSED;
-	}
-	switch(cResult){
-		case RELASED:
-			LedOn(0);
-			break;
-		case PRESSED:
-			LedOn(1);
-			break;
-	}
-	return cResult;
-}
+#define BUTTON1_bm	(1<<4)
+#define BUTTON2_bm	(1<<6)
+#define BUTTON3_bm	(1<<5)
+#define BUTTON4_bm	(1<<7)
 
 void KeyboardInit(){
 	
 	IO0DIR &= !(BUTTON1_bm|BUTTON2_bm|BUTTON3_bm|BUTTON4_bm);
 }
 
-void ReadButton(enum KeyboarState){
-	
-	switch(eKeyboarRead){
-		case BUTTON_1:
-			LedOn(0);
-			break;
-		case BUTTON_2:
-			LedOn(1);
-			break;
-		case BUTTON_3:
-			LedOn(2);
-			break;
-		case BUTTON_4:
-			LedOn(3);
-			break;
-		default:
-			break;		
-			LedOn(4);
-	}
-}
+enum KeyboardState eKeyboardRead(void){
 
-enum KeyboarState eKeyboarRead(){
-
-	if(0 == (IO0PIN & BUTTON1_bm)){
+	if(0 == (IO0PIN & BUTTON1_bm)){				
 		return BUTTON_1;
 	}
-	else if(0 == (IO0PIN & BUTTON1_bm){
+	else if(0 == (IO0PIN & BUTTON2_bm)){	
 		return BUTTON_2;
 	}
-	else if(0 == (IO0PIN & BUTTON1_bm){
+	else if(0 == (IO0PIN & BUTTON3_bm)){
 		return BUTTON_3;
 	}
-	else if(0 == (IO0PIN & BUTTON1_bm){
+	else if(0 == (IO0PIN & BUTTON4_bm)){
 		return BUTTON_4;
 	}
 	else{

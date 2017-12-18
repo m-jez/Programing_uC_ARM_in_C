@@ -9,6 +9,7 @@
 void LedInit(void){
 	
 	IO1DIR|=(LED0_bm|LED1_bm|LED2_bm|LED3_bm);
+	IO1SET=LED1_bm;
 }
 
 void LedOn(unsigned char ucLedIndeks){
@@ -27,8 +28,6 @@ void LedOn(unsigned char ucLedIndeks){
 		case 3:
 			IO1SET|=LED3_bm;
 			break;
-		default:
-			break;
 	}
 }
 
@@ -46,14 +45,4 @@ void LedStep(enum StepDirection eStepDirection){
 		sucLedIndex=sucLedIndex%4;
 		LedOn(sucLedIndex);
 	}
-}
-
-void LedStepLeft(void){
-	
-	LedStep(LEFT);
-}
-
-void LedStepRight(void){
-	
-	LedStep(RIGHT);
 }

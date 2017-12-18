@@ -4,143 +4,151 @@
 
 #define ClocksToMiliSecRatio 5455
 
-enum LedState{LEWO, PRAWO, STOP, PRZESUN};
-
 void Delay(unsigned int uiDelayMS){
 	
 	unsigned int uiIndex;
 	
-	for(uiIndex=0; uiIndex<(ClockToMiliSecRatio*uiDelayMS); uiIndex++){}
+	for(uiIndex=0; uiIndex<(ClocksToMiliSecRatio*uiDelayMS); uiIndex++){}
 }
 
-/* zad3
+// zad3
+/*
+enum LedState{LED_LEWO, LED_PRAWO};
+
 int main(void){
 	
-	enum LedState eLedState=LEWO;
+	enum LedState eLedState=LED_LEWO;
 	unsigned char ucLicznikPrzesuniec=0;
 	
 	LedInit();
+	Delay(500);
 	for(;;){
 		switch(eLedState){
-			case LEWO:
-				LedStepLeft();
-				if((ucLicznikPrzesuniec++)==3){
-					eLedState=PRAWO;
+			case LED_LEWO:
+				LedStep(LEFT);
+				if((ucLicznikPrzesuniec++)==2){
+					eLedState=LED_PRAWO;
 				}
 				break;
-			case PRAWO:
-				LedStepRight();
-				if((ucLicznikPrzesuniec--)==0){
-					eLedState =LEWO;
+			case LED_PRAWO:
+				LedStep(RIGHT);
+				if((ucLicznikPrzesuniec--)==1){
+					eLedState=LED_LEWO;
 				}
 				break;
 		}
-		DelayMS(500);
+		Delay(500);
 	}
-}
-*/
+}*/
 
-/* zad4 
+
+// zad4 
+/*
+enum LedState{LED_STOP, LED_PRZESUN};
+
 int main(void){
 	
-	enum LedStatus eLedStatus=STOP;
+	enum LedState eLedState=LED_STOP;
 	unsigned char ucLicznik=0;
 	
 	LedInit();
-	LedStepRight();			// ustawienie swiecacej diody w skrajnej lewej pozycji
+	LedStep(RIGHT);			// ustawienie swiecacej diody w skrajnej lewej pozycji
 	KeyboardInit();
 	for(;;){
-		switch(eLedStatus){
-			case STOP:
-				if(eKeyboarRead()==BUTTON_1){
-					for(;eKeyboarRead()!=RELASED;){}
-					eLedStatus=PRZESUN;
+		switch(eLedState){
+			case LED_STOP:
+				if(eKeyboardRead()==BUTTON_1){
+					for(;eKeyboardRead()!=RELASED;){}
+					eLedState=LED_PRZESUN;
 				}
 				break;
-			case PRZESUN:
+			case LED_PRZESUN:
 				if(ucLicznik<3){
-					LedStepRight();
+					LedStep(RIGHT);
 					ucLicznik++;
 				}
 				else{
 					ucLicznik=0;
-					eLedStatus=STOP;
+					eLedState=LED_STOP;
 				}
 				break;
 		}
-		DelayMS(500);
+		Delay(50);
 	}
 }
 */
 
-/* zad5
+// zad5
+/*
+enum LedState{LED_STOP, LED_PRZESUN};
+
 int main(void){
 	
-	enum LedStatus 	
+	enum LedState eLedState=LED_PRZESUN;	
 	
 	LedInit();
 	KeyboardInit();
 	for(;;){
-		switch(eLedStatus){
-			case PRZESUN:
-				if(eKeyboarRead()==BUTTON_1){
-					for(;ReadKey()!=RELASED;){}
-					eLedStatus=STOP;
+		switch(eLedState){
+			case LED_PRZESUN:
+				if(eKeyboardRead()==BUTTON_1){
+					for(;eKeyboardRead()!=RELASED;){}
+					eLedState=LED_STOP;
 				}
 				else{
-					LedStepRight();
+					LedStep(RIGHT);
 				}
 				break;
-			case STOP:
-				if(ReadKey()==BUTTON_2){
-					for(;ReadKey()!=RELASED;){}
-					eLedStatus=PRZESUN;
+			case LED_STOP:
+				if(eKeyboardRead()==BUTTON_2){
+					for(;eKeyboardRead()!=RELASED;){}
+					eLedState=LED_PRZESUN;
 				}
 				break;
 		}
-		DelayMS(500);
+		Delay(50);
 	}
 }
 */
 
-/* zad6 
-enum LedStatus {LEWO, STOP, PRAWO};
+// zad6 
+enum LedStatus {LED_LEWO, LED_STOP, LED_PRAWO};
 
-void zad6(void){
+int main(void){
 	
-	enum LedStatus eLedStatus = STOP;
+	enum LedStatus eLedStatus = LED_STOP;
 	
 	LedInit();
-	LedStepRight();
+	LedStep(RIGHT);
 	KeyboardInit();
 	for(;;){
 		switch(eLedStatus){
-			case LEWO:
-				if(ReadKey() == BUTTON_2){
-					eLedStatus = STOP;
+			case LED_LEWO:
+				if(eKeyboardRead() == BUTTON_2){
+					eLedStatus = LED_STOP;
 				}
 				else{
-					LedStepLeft();
+					LedStep(LEFT);
 				}
 				break;
-			case PRAWO:
-				if(ReadKey() == BUTTON_2){
-					eLedStatus = STOP;
+			case LED_PRAWO:
+				if(eKeyboardRead() == BUTTON_2){
+					eLedStatus = LED_STOP;
 				}
 				else{
-					LedStepRight();
+					LedStep(RIGHT);
 				}
 				break;
-			case STOP:
-				if(ReadKey() == BUTTON_1){
-					eLedStatus = LEWO;
+			case LED_STOP:
+				if(eKeyboardRead() == BUTTON_1){
+					eLedStatus = LED_LEWO;
 				}
-				else if(ReadKey() == BUTTON_3){
-					eLedStatus = PRAWO;
+				else if(eKeyboardRead() == BUTTON_3){
+					eLedStatus = LED_PRAWO;
 				}
 				break;
 		}
-		DelayMS(500);
+		Delay(100);
 	}
 }
-*/
+

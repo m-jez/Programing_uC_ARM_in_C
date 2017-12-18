@@ -2,7 +2,6 @@
 #include "led.h"
 #include "keyboard.h"
 
-
 #define BUTTON1_bm	(1<<4)
 #define BUTTON2_bm	(1<<6)
 #define BUTTON3_bm	(1<<5)
@@ -13,43 +12,21 @@ void KeyboardInit(){
 	IO0DIR &= !(BUTTON1_bm|BUTTON2_bm|BUTTON3_bm|BUTTON4_bm);
 }
 
-enum KeyboarState eKeyboarRead(){
-	
-	enum KeyboarState eKeyboarState;
+enum KeyboardState eKeyboardRead(void){
 
-	if(!(IO0PIN&BUTTON1_bm)){
-		eKeyboarState=BUTTON_1;
+	if(0 == (IO0PIN & BUTTON1_bm)){				
+		return BUTTON_1;
 	}
-	else if(!(IO0PIN&BUTTON2_bm)){
-		eKeyboarState=BUTTON_2;
+	else if(0 == (IO0PIN & BUTTON2_bm)){	
+		return BUTTON_2;
 	}
-	else if(!(IO0PIN&BUTTON3_bm)){
-		eKeyboarState=BUTTON_3;
+	else if(0 == (IO0PIN & BUTTON3_bm)){
+		return BUTTON_3;
 	}
-	else if(!(IO0PIN&BUTTON4_bm)){
-		eKeyboarState=BUTTON_4;
+	else if(0 == (IO0PIN & BUTTON4_bm)){
+		return BUTTON_4;
 	}
 	else{
-		eKeyboarState=RELASED;
+		return RELASED;
 	}
-	switch(eKeyboarState){
-		case BUTTON_1:
-			LedOn(0);
-			break;
-		case BUTTON_2:
-			LedOn(1);
-			break;
-		case BUTTON_3:
-			LedOn(2);
-			break;
-		case BUTTON_4:
-			LedOn(3);
-			break;
-		case RELASED:
-			LedOn(4);
-			break;
-		default:
-			break;		
-	}
-	return eKeyboarState;
 }
