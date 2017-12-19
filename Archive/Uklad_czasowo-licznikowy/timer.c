@@ -2,33 +2,33 @@
 //====================================================================
 void InitTimer0(void){
 	
-	DISABLE_TIMER_0;
-	ENABLE_TIMER_0;
+	T0TCR &= !0x1;			// Counter disable
+	T0TCR |= 0x1;				// Counter enable
 }
 //====================================================================
 void WaitOnTimer0(unsigned int uiTime){
 	
-	InitTimer0();
-	uiTime *= 15000;
-	while(TIMER_0 < uiTime){
+	T0TCR |= 0x1;				// Counter enable
+	for(uiTime*=15000;T0TC<uiTime;){
 	}
-	RESET_TIMER_0;
+	T0TCR |= 0x2;				// Counter reset enable 
+	T0TCR &= !(0x2);		// Counter reset disable 
 }
 //====================================================================
 void InitTimer0Match0(unsigned int iDelayTimer){
 	
-	DISABLE_TIMER_0;
-	iDelayTimer = iDelayTimer * 15000;
-	SET_TIMEOUT_TIMER_0(iDelayTimer);
-	ENABLE_INTERRUPT_MR0_0;
-	ENABLE_TIMER_0;
+	T0MR0 = iDelayTimer*15000;
+	T0TCR &= !0x0;			// Counter disable
+	T0MCR |= 0x1;				// Counter enable
 }
 //====================================================================
 void WaitOnTimer0Match0(void){
 	
-	InitTimer0Match0(100);
-	for(;!(T0CCR&0x1);){
-	}	
+	T0TCR = 0x1;				// Counter enable
+	for(;!(T0IR==0x1);){
+	}
+	T0IR  |= 0x1;				// Interrupt flag cleared 
+	T0TCR |= 0x2;				// Counter reset enable
+	T0TCR &= !(0x2);		// Counter reset disable 
 }
 //====================================================================
-

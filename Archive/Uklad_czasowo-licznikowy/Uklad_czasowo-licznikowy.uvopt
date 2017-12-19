@@ -148,40 +148,7 @@
           <Name>UL2ARM(-U40296420 -O7 -C0 -FO7  -FN1 -FC800 -FD40000000 -FF0LPC_IAP_256 -FL03E000 -FS00</Name>
         </SetRegEntry>
       </TargetDriverDllRegistry>
-      <Breakpoint>
-        <Bp>
-          <Number>0</Number>
-          <Type>0</Type>
-          <LineNumber>6</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>736</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>C:\Users\M_Jez\Documents\Studia\Programowanie mikrokontrolerĂłw ARM w jĂŞzyku C\Projekty\Current\main.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression></Expression>
-        </Bp>
-        <Bp>
-          <Number>1</Number>
-          <Type>0</Type>
-          <LineNumber>11</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>740</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>C:\Users\M_Jez\Documents\Studia\Programowanie mikrokontrolerĂłw ARM w jĂŞzyku C\Projekty\Current\main.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\Uklad_czasowo_licznikowy\main.c\11</Expression>
-        </Bp>
-      </Breakpoint>
+      <Breakpoint/>
       <WatchWindow1>
         <Ww>
           <count>0</count>
@@ -192,6 +159,16 @@
           <count>1</count>
           <WinNumber>1</WinNumber>
           <ItemText>uiTime</ItemText>
+        </Ww>
+        <Ww>
+          <count>2</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>TIMER_0</ItemText>
+        </Ww>
+        <Ww>
+          <count>3</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>T0CCR</ItemText>
         </Ww>
       </WatchWindow1>
       <Tracepoint>
@@ -242,7 +219,7 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>233</TopLine>
+      <TopLine>231</TopLine>
       <CurrentLine>239</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\Startup.s</PathWithFileName>
@@ -254,12 +231,12 @@
       <GroupNumber>1</GroupNumber>
       <FileNumber>2</FileNumber>
       <FileType>1</FileType>
-      <tvExp>0</tvExp>
+      <tvExp>1</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>2</ColumnNumber>
+      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>8</TopLine>
-      <CurrentLine>28</CurrentLine>
+      <TopLine>3</TopLine>
+      <CurrentLine>30</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\timer.c</PathWithFileName>
       <FilenameWithoutPath>timer.c</FilenameWithoutPath>

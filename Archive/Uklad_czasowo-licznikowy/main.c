@@ -1,11 +1,25 @@
 #include <LPC21xx.H>
 #include "timer.h"
+#include "led.h"
 
-int main(void){
-
-	WaitOnTimer0Match0();
+ int main(void){
 	
-	/* 2
-	WaitOnTimer0(100);
-	*/
+// #1	 
+	/*
+	LedInit();
+	InitTimer0();
+	for(;;){
+		WaitOnTimer0(250);
+		LedStep(LEFT);
+	}
+	*/	 
+	 
+// #2	 
+	 
+	LedInit();
+	InitTimer0Match0(100);
+	for(;;){		
+		WaitOnTimer0Match0();
+		LedStep(LEFT);
+	}
 }

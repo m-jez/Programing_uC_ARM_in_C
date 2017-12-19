@@ -134,11 +134,40 @@
       <TargetDriverDllRegistry>
         <SetRegEntry>
           <Number>0</Number>
+          <Key>DLGDARM</Key>
+          <Name>(134=-1,-1,-1,-1,0)(135=-1,-1,-1,-1,0)(107=-1,-1,-1,-1,0)(108=-1,-1,-1,-1,0)(106=-1,-1,-1,-1,0)(105=-1,-1,-1,-1,0)(147=-1,-1,-1,-1,0)(80=-1,-1,-1,-1,0)(104=-1,-1,-1,-1,0)(100=-1,-1,-1,-1,0)(101=-1,-1,-1,-1,0)(160=-1,-1,-1,-1,0)(161=-1,-1,-1,-1,0)(113=-1,-1,-1,-1,0)(112=-1,-1,-1,-1,0)(136=-1,-1,-1,-1,0)(117=-1,-1,-1,-1,0)(118=-1,-1,-1,-1,0)(146=-1,-1,-1,-1,0)(110=-1,-1,-1,-1,0)(111=-1,-1,-1,-1,0)(114=-1,-1,-1,-1,0)(119=-1,-1,-1,-1,0)(130=-1,-1,-1,-1,0)(131=-1,-1,-1,-1,0)(121=-1,-1,-1,-1,0)(122=-1,-1,-1,-1,0)(132=-1,-1,-1,-1,0)(115=-1,-1,-1,-1,0)(116=-1,-1,-1,-1,0)</Name>
+        </SetRegEntry>
+        <SetRegEntry>
+          <Number>0</Number>
+          <Key>ARMDBGFLAGS</Key>
+          <Name>-T5F</Name>
+        </SetRegEntry>
+        <SetRegEntry>
+          <Number>0</Number>
           <Key>UL2ARM</Key>
           <Name>-U40296420 -O7 -C0 -FO7 -FD40000000 -FC800 -FN1 -FF0LPC_IAP_256 -FS00 -FL03E000)</Name>
         </SetRegEntry>
       </TargetDriverDllRegistry>
       <Breakpoint/>
+      <WatchWindow1>
+        <Ww>
+          <count>0</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>ucLicznikPrzesuniec</ItemText>
+        </Ww>
+        <Ww>
+          <count>1</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>eLedState</ItemText>
+        </Ww>
+      </WatchWindow1>
+      <WatchWindow2>
+        <Ww>
+          <count>0</count>
+          <WinNumber>2</WinNumber>
+          <ItemText>eLedState</ItemText>
+        </Ww>
+      </WatchWindow2>
       <Tracepoint>
         <THDelay>0</THDelay>
       </Tracepoint>
@@ -150,7 +179,7 @@
         <aSer1>0</aSer1>
         <aSer2>0</aSer2>
         <aPa>0</aPa>
-        <viewmode>0</viewmode>
+        <viewmode>1</viewmode>
         <vrSel>0</vrSel>
         <aSym>0</aSym>
         <aTbox>0</aTbox>
@@ -187,8 +216,8 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
+      <TopLine>231</TopLine>
+      <CurrentLine>239</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\Startup.s</PathWithFileName>
       <FilenameWithoutPath>Startup.s</FilenameWithoutPath>
@@ -201,10 +230,10 @@
       <FileType>1</FileType>
       <tvExp>1</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>21</ColumnNumber>
+      <ColumnNumber>22</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>13</TopLine>
-      <CurrentLine>32</CurrentLine>
+      <TopLine>86</TopLine>
+      <CurrentLine>93</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>
@@ -217,10 +246,10 @@
       <FileType>1</FileType>
       <tvExp>1</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>2</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>1</CurrentLine>
+      <TopLine>6</TopLine>
+      <CurrentLine>37</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\led.c</PathWithFileName>
       <FilenameWithoutPath>led.c</FilenameWithoutPath>
@@ -233,10 +262,10 @@
       <FileType>1</FileType>
       <tvExp>1</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>32</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>1</CurrentLine>
+      <TopLine>3</TopLine>
+      <CurrentLine>15</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\keyboard.c</PathWithFileName>
       <FilenameWithoutPath>keyboard.c</FilenameWithoutPath>
