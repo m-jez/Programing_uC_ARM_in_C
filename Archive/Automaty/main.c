@@ -112,11 +112,12 @@ int main(void){
 */
 
 // zad6 
-enum LedStatus {LED_LEWO, LED_STOP, LED_PRAWO};
+enum LedStatus {LED_LEWO, LED_STOP, LED_PRAWO, LED_LEWO_PRZERWA};
 
 int main(void){
 	
 	enum LedStatus eLedStatus = LED_STOP;
+	unsigned char ucCycleDelay=0;
 	
 	LedInit();
 	LedStep(RIGHT);
@@ -145,6 +146,18 @@ int main(void){
 				}
 				else if(eKeyboardRead() == BUTTON_3){
 					eLedStatus = LED_PRAWO;
+				}
+				else if(eKeyboardRead() == BUTTON_4){
+					eLedStatus = LED_LEWO_PRZERWA;
+				}
+				break;
+			case LED_LEWO_PRZERWA:
+				if(ucCycleDelay == 4){
+					eLedStatus = LED_LEWO;
+					ucCycleDelay=0;
+				}
+				else{
+					ucCycleDelay++;
 				}
 				break;
 		}
