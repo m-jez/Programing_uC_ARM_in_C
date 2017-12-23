@@ -1,34 +1,34 @@
 #include "timer.h"
-//====================================================================
+
+#define COUNTER_ENABLE_bm  		(1<<0)
+#define COUNTER_RESET_bm		 	(1<<1)
+#define MR0_INTERRUPT_bm			(1<<0)
+
 void InitTimer0(void){
 	
-	T0TCR &= !0x1;			// Counter disable
-	T0TCR |= 0x1;				// Counter enable
+	T0TCR |= COUNTER_ENABLE_bm;				
 }
-//====================================================================
+
 void WaitOnTimer0(unsigned int uiTime){
-	
-	T0TCR |= 0x1;				// Counter enable
+			
 	for(uiTime*=15000;T0TC<uiTime;){
 	}
-	T0TCR |= 0x2;				// Counter reset enable 
-	T0TCR &= !(0x2);		// Counter reset disable 
+	T0TCR |= COUNTER_RESET_bm;	
+	T0TCR &= !COUNTER_RESET_bm;
 }
-//====================================================================
+
 void InitTimer0Match0(unsigned int iDelayTimer){
 	
 	T0MR0 = iDelayTimer*15000;
-	T0TCR &= !0x0;			// Counter disable
-	T0MCR |= 0x1;				// Counter enable
+	T0TCR |= COUNTER_RESET_bm;
+	T0TCR &= !COUNTER_RESET_bm;
+	T0TCR |= COUNTER_ENABLE_bm;	
 }
-//====================================================================
+
 void WaitOnTimer0Match0(void){
 	
-	T0TCR = 0x1;				// Counter enable
+	T0MCR |= MR0_INTERRUPT_bm;	
 	for(;!(T0IR==0x1);){
 	}
-	T0IR  |= 0x1;				// Interrupt flag cleared 
-	T0TCR |= 0x2;				// Counter reset enable
-	T0TCR &= !(0x2);		// Counter reset disable 
+	T0IR  |= MR0_INTERRUPT_bm;
 }
-//====================================================================
