@@ -10,8 +10,7 @@
 #define mMR0_INTERRUPT    (1<<0)
 
 // VIC (Vector Interrupt Controller) VICIntEnable
-#define VIC_TIMER1_CHANNEL_NR 5
-#define VIC_TIMER0_CHANNEL_NR 4
+#define VIC_TIMER0_CHANNEL_NR 4 //sprawdzic
 
 // VICVectCntlx Vector Control Registers
 #define mIRQ_SLOT_ENABLE (1<<5)
@@ -22,7 +21,6 @@ void (*ptrTimer0InterruptFunction)(void);
 __irq void Timer0IRQHandler(){
 
 	T0IR=mMR0_INTERRUPT; 	// skasowanie flagi przerwania 
-	//LedStep(RIGHT);				// cos do roboty
 	ptrTimer0InterruptFunction();
 	VICVectAddr=0x00; 		// potwierdzenie wykonania procedury obslugi przerwania
 }
@@ -40,11 +38,4 @@ void Timer0Interrupts_Init(unsigned int uiPeriod, void (*ptrInterruptFunction)(v
 	T0MCR |= (mINTERRUPT_ON_MR0 | mRESET_ON_MR0); 							// action 
         // timer
 	T0TCR |=  mCOUNTER_ENABLE; // start 
-}
-
-void Timer0Interrupts_End(void){
-	
-	VICIntEnable &= !(0x1 << VIC_TIMER0_CHANNEL_NR);
-	VICVectCntl1 &= !mIRQ_SLOT_ENABLE;
-	T0TCR &= !mCOUNTER_ENABLE;
 }

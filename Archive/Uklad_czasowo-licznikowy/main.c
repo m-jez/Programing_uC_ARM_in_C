@@ -6,20 +6,23 @@
  int main(void){
 	
 // #1	 
-	 /*
+	/*
 	LedInit();
+	 InitTimer0();
 	for(;;){
-		InitTimer0();
 		WaitOnTimer0(250);
 		LedStep(LEFT);
-	}
-	*/
+	}*/
+	
+	 
 	 
 // #2	 
 	LedInit();
-		for(;;){
-			InitTimer0Match0(150);
+	InitTimer0Match0(150);
+		for(;;){		
 			WaitOnTimer0Match0();
 			LedStep(LEFT);	
 		}
+		
+//
 }
