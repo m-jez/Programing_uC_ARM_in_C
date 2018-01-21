@@ -1,40 +1,26 @@
-#include "led.h"
 #include "keyboard.h"
-#include "timer_interrupts.h"
 #include "servo.h"
 
 int main (){
-
-	unsigned int uiDestinationPosition;
-
-	ServoInit(50);
+	
+  KeyboardInit();
+	ServoInit(20);
 	for(;;){
-		switch(eServo.eState){
-			case CALLIB:
-				ServoCallib();
-				eServo.eState=IDLE;
-				break;
-			case IDLE:
-				if(eKeyboardRead()==BUTTON_1){
-					eServo.eState=CALLIB;
-				}
-				else if(eKeyboardRead()==BUTTON_2){
-					uiDestinationPosition=50;
-					eServo.eState=IN_PROGRESS;
-				}
-				else if(eKeyboardRead()==BUTTON_3){
-					uiDestinationPosition=100;
-					eServo.eState=IN_PROGRESS;
-				}
-				else if(eKeyboardRead()==BUTTON_4){
-					uiDestinationPosition=150;
-					eServo.eState=IN_PROGRESS;
-				}
-				break;
-			case IN_PROGRESS:
-				ServoGoTo(uiDestinationPosition);
-				eServo.eState=IDLE;
-				break;
-		}
+		switch(eKeyboardRead()){
+			case BUTTON_1:
+					ServoCallib();
+					break;
+			case BUTTON_2:
+					ServoGoTo(50);
+					break;
+			case BUTTON_3:
+					ServoGoTo(100);
+					break;
+			case BUTTON_4:
+					ServoGoTo(150);
+					break;
+			default:
+					break;
+		};
 	}
 }

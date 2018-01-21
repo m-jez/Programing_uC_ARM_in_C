@@ -39,10 +39,13 @@ void Automat(void){
 
 int main (){
 	
-	unsigned int uiDelayMS = 100;		
+	unsigned int uiDelayMS = 20000, uiDelayMSTimer1 = 40000;
+	unsigned int iMainLoopCtr;	
 	
 	LedInit();
+	Timer1Interrupts_Init(uiDelayMSTimer1, &LedStepRight);
 	Timer0Interrupts_Init(uiDelayMS, &Automat);
 	for(;;){
+		iMainLoopCtr++;
 	}
 }
